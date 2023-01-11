@@ -396,40 +396,56 @@ void ContinueGame()
 		Gotoxy(2 + i, 43);
 		cout << "░";
 	}
-	for (int i = 0; i < vt.size(); i++)
+	if (vt.size() > 0)
 	{
-		if (i == 0) SetColor(14, 5);
-		else SetColor(0, 7);
-		Gotoxy(38, 28 + i * 2);
-		cout << i + 1 << "." << vt[i].first << endl;
-	}
-	int cnt = 0;
-	while (true)
-	{
-		char c = getch();
-		if (c == 13) break;
-		if (c != -32) continue;
-		c = getch();
-		if (c == 72) cnt = (cnt - 1 + vt.size()) % vt.size();
-		else if (c == 80) cnt = (cnt + 1 + vt.size()) % vt.size();
 		for (int i = 0; i < vt.size(); i++)
 		{
-			if (i != cnt) SetColor(0, 7);
-			else SetColor(14, 5);
+			if (i == 0) SetColor(14, 5);
+			else SetColor(0, 7);
 			Gotoxy(38, 28 + i * 2);
 			cout << i + 1 << "." << vt[i].first << endl;
 		}
-	}
-	for (int i = 0; i < vt.size(); i++)
-	{
-		if (i == cnt)
+		int cnt = 0;
+		while (true)
 		{
-			current_player = vt[i].first;
-			current_high_score = vt[i].second;
-			break;
+			char c = getch();
+			if (c == 13) break;
+			if (c != -32) continue;
+			c = getch();
+			if (c == 72) cnt = (cnt - 1 + vt.size()) % vt.size();
+			else if (c == 80) cnt = (cnt + 1 + vt.size()) % vt.size();
+			for (int i = 0; i < vt.size(); i++)
+			{
+				if (i != cnt) SetColor(0, 7);
+				else SetColor(14, 5);
+				Gotoxy(38, 28 + i * 2);
+				cout << i + 1 << "." << vt[i].first << endl;
+			}
 		}
+		for (int i = 0; i < vt.size(); i++)
+		{
+			if (i == cnt)
+			{
+				current_player = vt[i].first;
+				current_high_score = vt[i].second;
+				break;
+			}
+		}
+		Play();
 	}
-	Play();
+	else
+	{
+		Gotoxy(34, 30);
+		SetColor(0, 15);
+		cout << "LIST HIGH SCORE IS EMPTY" << endl;
+		Gotoxy(34, 32);
+		cout << "PRESS B TO BACK" << endl;
+		char c;
+		while ((c = getch()) != 'b');
+		SetFontSize(8);
+		ClearScreen();
+		PlayGame();
+	}
 }
 
 void HighScore()
@@ -452,14 +468,12 @@ void HighScore()
 		cout << "░";
 	}
 	SetColor(0, 12);
-	int i = 0;
-	for (pair<string, int> p : score_table)
+	for (int i = 0; i < vt.size(); i++)
 	{
 		Gotoxy(38, 28 + i * 2);
-		cout << i + 1 << "." << p.first << ": " << p.second << endl;
-		i++;
+		cout << i + 1 << "." << vt[i].first << ": " << vt[i].second << endl;
 	}
-	Gotoxy(38, 28 + i * 2);
+	Gotoxy(38, 28 + vt.size() * 2);
 	cout << "Press B to back";
 	char c;
 	while ((c = getch()) != 'b');
@@ -623,11 +637,14 @@ void MainMenu()
 		else SetColor(14, 5);
 		cout << choose[i];
 	}
+	SetColor(0, 7);
+	Gotoxy(0, 0);
 	int cnt = 0;
 	while (true)
 	{
 		char c = getch();
 		if (c == 13) break;
+		if (c != -32) continue;
 		c = getch();
 		if (c == 72) cnt = (cnt + 3) % 4;
 		else if (c == 80) cnt = (cnt + 5) % 4;
@@ -644,7 +661,6 @@ void MainMenu()
 	else if (cnt == 1) ChooseLevel();
 	else if (cnt == 2) HighScore();
 	else if (cnt == 3) return;
-	//PlayGame();
 }
 
 int ParseInt(string s)
@@ -670,11 +686,15 @@ void LoadData()
 		name = "";
 		for (int i = 0; i < tmp.size() - 1; i++)
 		{
+			cout << tmp.size() << endl;
 			name = name + tmp[i];
 			if (i < tmp.size() - 2) name = name + " ";
 		}
-		x = ParseInt(tmp.back());
-		score_table[name] = x;
+		if (tmp.size() >= 2)
+		{
+			x = ParseInt(tmp.back());
+			score_table[name] = x;
+		}
 	}
 	for (pair<string, int> p : score_table)
 		vt.push_back(p);
