@@ -38,7 +38,7 @@ void ClearScreen()
 	 // Position.Y = 0;
 	 // SetConsoleCursorPosition(hOut, Position);
 
-	HANDLE                     hStdOut;
+    HANDLE                     hStdOut;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     DWORD                      count;
     DWORD                      cellCount;
