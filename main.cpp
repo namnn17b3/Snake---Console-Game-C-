@@ -682,13 +682,10 @@ void LoadData()
 	{
 		stringstream ss(s);
 		vector<string> tmp;
-		while (ss >> str) {
-			tmp.push_back(str);
-		}
+		while (ss >> str) tmp.push_back(str);
 		name = "";
 		for (int i = 0; i < tmp.size() - 1; i++)
 		{
-			cout << tmp.size() << endl;
 			name = name + tmp[i];
 			if (i < tmp.size() - 2) name = name + " ";
 		}
