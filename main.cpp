@@ -33,9 +33,9 @@ const string tym[] = {"\u2665", "\u2764"};
 const int N = 1e5 + 7;
 unordered_set<int> exist;
 int score = 0;
-int level = 200;
+int level = 150;
 int current_high_score = 0;
-string level_string = "NORMAL";
+string level_string = "2. NORMAL";
 string status[] = {"PLAYING...", "PAUSING...", "GAME OVER "};
 deque<Point> Q;
 
@@ -70,6 +70,9 @@ void AddFront()
 
 void Play()
 {
+	exist.clear();
+	Q.clear();
+	score = 0;
 	SetColor(0, 7);
 	ClearScreen();
 	SetFontSize(20);
@@ -151,8 +154,6 @@ void Play()
 	Gotoxy(78, 23);
 	SetColor(6, 4);
 	cout << "Status: " << status[0] << endl;
-	exist.clear();
-	Q.clear();
 	Point front = {2, 5, 'd'};
 	Point back = {1, 5, 'd'};
 	exist.insert(front.x * N + front.y);
@@ -209,6 +210,7 @@ void Play()
 			score_table[current_player] = current_high_score;
 			WriteData();
 			Play();
+			break;
 		}
 		else if (huong == 'b')
 		{
