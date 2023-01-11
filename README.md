@@ -1,6 +1,7 @@
 # Snake - Console Game C++
 
 Game được viết hoàn toàn bằng C++ cùng với thư viện tự viết DoHoa.h
+
 IDE: Code::Blocks 20.03
 
 1. Giao diện khi vào chơi:
