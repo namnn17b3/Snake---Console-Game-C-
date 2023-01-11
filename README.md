@@ -13,11 +13,11 @@ IDE: Code::Blocks 20.03
 
 Nhập tên người chơi
 
+![image](https://user-images.githubusercontent.com/88151568/211687545-47d15407-f6aa-4aba-b64a-c2e5d780908e.png)
+
 Lưu ý phải là tên mới chưa từng xuất hiện trong danh sách High Score nếu không sẽ có thông báo đã tồn tại tên và bắt nhập lại
 
 ![image](https://user-images.githubusercontent.com/88151568/211689197-626b8792-8979-430e-b2a0-451fd66490ff.png)
-
-![image](https://user-images.githubusercontent.com/88151568/211687545-47d15407-f6aa-4aba-b64a-c2e5d780908e.png)
 
 Có thể chọn Continue để chơi tiếp nếu là người đã tồn tại trong danh sách High Score
 
