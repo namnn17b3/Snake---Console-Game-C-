@@ -24,6 +24,10 @@ Có thể chọn Continue để chơi tiếp nếu là người đã tồn tại
 
 ![image](https://user-images.githubusercontent.com/88151568/211687886-379c3ce8-503a-431f-bd2a-91cb2418f2d2.png)
 
+Nếu danh sách High Score rỗng thì sẽ hiện thông báo như hình sau:
+
+![image](https://user-images.githubusercontent.com/88151568/211696262-facd12a9-46f6-4c64-9caf-55a3f3c1710d.png)
+
 3. Danh Sách High Score
 
 ![image](https://user-images.githubusercontent.com/88151568/211688186-7d3dc65f-334d-4a9d-a781-62478947b41c.png)
