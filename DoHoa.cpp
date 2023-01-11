@@ -3,40 +3,40 @@
 // Hàm thay đổi kích cỡ của khung cmd với tham số truyền vào là chiều cao, chiều rộng.
 void ResizeConsole(int width, int height)
 {
-	HWND console = GetConsoleWindow();
-	RECT r;
-	GetWindowRect(console, &r);
-	MoveWindow(console, r.left, r.top, width, height, TRUE);
+    HWND console = GetConsoleWindow();
+    RECT r;
+    GetWindowRect(console, &r);
+    MoveWindow(console, r.left, r.top, width, height, TRUE);
 }
 
 // Hàm tô màu.
 void TextColor(int x)
 {
-	HANDLE mau;
-	mau = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(mau, x);
+    HANDLE mau;
+    mau = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(mau, x);
 }
 
 // Hàm dịch chuyển con trỏ đến tọa độ x, y.
 void Gotoxy(int posX, int posY)
 {
-	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD Position;
     Position.X = posX;
     Position.Y = posY;
 
-	SetConsoleCursorPosition(hStdout, Position);
+    SetConsoleCursorPosition(hStdout, Position);
 }
 
 // Hàm xóa màn hình.
 void ClearScreen()
 {
-	 // HANDLE hOut;
-	 // COORD Position;
-	 // hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	 // Position.X = 0;
-	 // Position.Y = 0;
-	 // SetConsoleCursorPosition(hOut, Position);
+     // HANDLE hOut;
+     // COORD Position;
+     // hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+     // Position.X = 0;
+     // Position.Y = 0;
+     // SetConsoleCursorPosition(hOut, Position);
 
     HANDLE                     hStdOut;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -80,10 +80,10 @@ void ClearScreen()
 // x, y là tọa độ con trỏ cần nhảy đến để viết, a là chuỗi cần truyền vào, color là màu truyền vào.
 void ToMau(int x, int y, char *a, int color)
 {
-	Gotoxy(x, y);
-	TextColor(color);
-	cout << a;
-	TextColor(7);
+    Gotoxy(x, y);
+    TextColor(color);
+    cout << a;
+    TextColor(7);
 }
 
 // vô hiệu hóa các nút thu nhỏ, phóng to, đóng cửa sổ
@@ -152,7 +152,7 @@ void SetColor(int backgound_color, int text_color)
 // true là hiện, false là ẩn
 void ShowCur(bool CursorVisibility)
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO ConCurInf;
 
     ConCurInf.dwSize = 10;
@@ -178,15 +178,15 @@ void ShowScrollbar(bool Show)
 
 void SetFontSize(int font_size)
 {
-	CONSOLE_FONT_INFOEX cfi;
-	cfi.cbSize = sizeof(cfi);
-	cfi.nFont = 0;
-	cfi.dwFontSize.X = 0;                   // Width of each character in the font
-	cfi.dwFontSize.Y = font_size;           // Height
-	cfi.FontFamily = FF_DONTCARE;
-	cfi.FontWeight = FW_NORMAL;
-	wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
-	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    CONSOLE_FONT_INFOEX cfi;
+    cfi.cbSize = sizeof(cfi);
+    cfi.nFont = 0;
+    cfi.dwFontSize.X = 0;                   // Width of each character in the font
+    cfi.dwFontSize.Y = font_size;           // Height
+    cfi.FontFamily = FF_DONTCARE;
+    cfi.FontWeight = FW_NORMAL;
+    wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 }
 
 // hiển thị tiếng việt: SetConsoleOuputCP(65001)
