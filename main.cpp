@@ -184,44 +184,49 @@ void Play()
             if (huong != 'a' && huong != 'd' && huong != 's' && huong != 'w'
                 && huong != 'p' && huong != 'r' && huong != 'b')
                     huong = old_huong;
-        }
-        if (huong == 'p')
-        {
-            SetColor(6, 15);
-            Gotoxy(82, 17);
-            cout << "Continue: C" << endl;
-            Gotoxy(78, 23);
-            SetColor(6, 4);
-            cout << "Status: " << status[1] << endl;
-            while ((huong = getch()) != 'c');
-        }
-        else if (huong == 'a' || huong == 'd' || huong == 'w' || huong == 's')
-        {
-            if ((huong == 'a' && old_huong != 'a' && old_huong != 'd') || (huong == 'd' && old_huong != 'a' && old_huong != 'd')
-                || (huong == 's' && old_huong != 's' && old_huong != 'w') || (huong == 'w' && old_huong != 's' && old_huong != 'w'))
+
+            if (huong == 'p')
             {
-                Point tmp = Q.front();
-                Q.pop_front();
-                Q.push_front({tmp.x, tmp.y, huong});
+                SetColor(6, 15);
+                Gotoxy(82, 17);
+                cout << "Continue: C" << endl;
+                Gotoxy(78, 23);
+                SetColor(6, 4);
+                cout << "Status: " << status[1] << endl;
+                while ((huong = getch()) != 'c');
             }
-        }
-        else if (huong == 'r')
-        {
-            score_table[current_player] = current_high_score;
-            WriteData();
-            Play();
-            break;
-        }
-        else if (huong == 'b')
-        {
-            score_table[current_player] = current_high_score;
-            WriteData();
-            SetFontSize(8);
-            ResizeConsole(1000, 600);
-            SetColor(0, 7);
-            ClearScreen();
-            PlayGame();
-            break;
+            else if (huong == 'a' || huong == 'd' || huong == 'w' || huong == 's')
+            {
+                if ((huong == 'a' && old_huong != 'a' && old_huong != 'd') || (huong == 'd' && old_huong != 'a' && old_huong != 'd')
+                    || (huong == 's' && old_huong != 's' && old_huong != 'w') || (huong == 'w' && old_huong != 's' && old_huong != 'w'))
+                {
+                    Point tmp = Q.front();
+                    Q.pop_front();
+                    Q.push_front({tmp.x, tmp.y, huong});
+                }
+                else
+                {
+                    while (kbhit()) getch();
+                }
+            }
+            else if (huong == 'r')
+            {
+                score_table[current_player] = current_high_score;
+                WriteData();
+                Play();
+                break;
+            }
+            else if (huong == 'b')
+            {
+                score_table[current_player] = current_high_score;
+                WriteData();
+                SetFontSize(8);
+                ResizeConsole(1000, 600);
+                SetColor(0, 7);
+                ClearScreen();
+                PlayGame();
+                break;
+            }
         }
         old_huong = huong;
         SetColor(6, 15);
