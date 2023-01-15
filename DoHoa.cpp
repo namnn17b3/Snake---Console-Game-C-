@@ -189,5 +189,5 @@ void SetFontSize(int font_size)
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 }
 
-// hiển thị tiếng việt: SetConsoleOuputCP(65001)
+// hiển thị tiếng việt: SetConsoleOutputCP(65001)
 // Thay đổi console title: SetConsoleTitle(char *name)
