@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include <conio.h>
 #include <Windows.h>
+#include <mmsystem.h>
 using namespace std;
 
 // Hàm thay đổi kích cỡ của khung cmd với tham số truyền vào là chiều cao, chiều rộng.
