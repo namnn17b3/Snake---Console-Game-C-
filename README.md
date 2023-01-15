@@ -4,6 +4,10 @@ Game được viết hoàn toàn bằng C++ cùng với thư viện tự viết 
 
 IDE: Code::Blocks 20.03
 
+Trước khi run code cần phải cấu hình lại linker của Code::Block với tùy chọn -lwinmm để hàm có thể phát được âm thanh khi chơi
+
+![image](https://user-images.githubusercontent.com/88151568/212563232-59c93310-081b-4780-96e7-08a846661a9d.png)
+
 1. Giao diện khi vào chơi:
 
 ![image](https://user-images.githubusercontent.com/88151568/211686660-ea45a9cf-c8df-4975-856f-2db25752a792.png)
