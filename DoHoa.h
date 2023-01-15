@@ -51,6 +51,6 @@ void ShowScrollbar(bool Show = true);
 // Ham thay doi co chu
 void SetFontSize(int font_size);
 
-// hiển thị tiếng việt: SetConsoleOuputCP(65001)
+// hiển thị tiếng việt: SetConsoleOutputCP(65001)
 // Thay đổi console title: SetConsoleTitle(char *name)
 // Thay đổi console title: SetConsoleTitle(char *name)
