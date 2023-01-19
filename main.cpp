@@ -163,13 +163,15 @@ void Play()
     cout << "Status: " << status[0] << endl;
     Point front = {2, 5, 'd'};
     Point back = {1, 5, 'd'};
+    Point before_front = back;
+    Point old_back;
     exist.insert(front.x * N + front.y);
     exist.insert(back.x * N + back.y);
-    SetColor(9, 7);
+    SetColor(12, 7);
     Gotoxy(back.x, back.y);
     cout << ' ';
     Gotoxy(front.x, front.y);
-    SetColor(12, 7);
+    SetColor(4, 7);
     cout << ' ';
     Q.push_back(front);
     Q.push_back(back);
@@ -244,7 +246,7 @@ void Play()
         SetColor(6, 4);
         cout << "Status: " << status[0] << endl;
 
-        Point old_back = Q.back();
+        old_back = Q.back();
         Q.pop_back();
         exist.erase(old_back.x * N + old_back.y);
         AddFront();
@@ -252,17 +254,22 @@ void Play()
         if (Q.front().x > 0 && Q.front().x < 70 && Q.front().y > 0 && Q.front().y < 37
             && exist.find(Q.front().x * N + Q.front().y) == exist.end())
         {
+            Gotoxy(before_front.x, before_front.y);
+            SetColor(12, 7);
+            cout << ' ';
+
             Gotoxy(old_back.x, old_back.y);
             SetColor(0, 7);
             cout << ' ';
 
             Gotoxy(Q.back().x, Q.back().y);
-            SetColor(9, 7);
+            SetColor(12, 7);
             cout << ' ';
 
             Gotoxy(Q.front().x, Q.front().y);
-            SetColor(12, 7);
+            SetColor(4, 7);
             cout << ' ';
+            before_front = Q.front();
 
             exist.insert(Q.front().x * N + Q.front().y);
             if (Q.front().x == food.x && Q.front().y == food.y)
@@ -270,16 +277,18 @@ void Play()
                 thread sound_effect(SoundEffect);
                 sound_effect.detach();
 
-                Gotoxy(Q.front().x, Q.front().y);
-                SetColor(9, 7);
+                before_front = Q.front();
+                Gotoxy(before_front.x, before_front.y);
+                SetColor(12, 7);
                 cout << ' ';
-                exist.insert(Q.front().x * N + Q.front().y);
+                exist.insert(before_front.x * N + before_front.y);
 
                 AddFront();
                 Gotoxy(Q.front().x, Q.front().y);
-                SetColor(12, 7);
+                SetColor(4, 7);
                 cout << ' ';
                 exist.insert(Q.front().x * N + Q.front().y);
+                before_front = Q.front();
 
                 score += (heart == tym[0]) ? 10 : 20;
                 Gotoxy(82, 22);
