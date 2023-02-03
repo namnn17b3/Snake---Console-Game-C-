@@ -13,7 +13,7 @@ struct Point {
     char huong;
 };
 
-void SoundEffect();
+void SoundEffect(string);
 void AddFront();
 void Play();
 void NewGame();
@@ -52,8 +52,8 @@ Point RandomPoint() {
     return res;
 }
 
-void SoundEffect() {
-    PlaySound(TEXT("effect.wav"), NULL, SND_LOOP);
+void SoundEffect(string file_name) {
+    PlaySound(TEXT(file_name.c_str()), NULL, SND_LOOP);
 }
 
 void AddFront() {
@@ -247,7 +247,7 @@ void Play() {
 
             exist.insert(Q.front().x * N + Q.front().y);
             if (Q.front().x == food.x && Q.front().y == food.y) {
-                thread sound_effect(SoundEffect);
+                thread sound_effect(SoundEffect, "effect.wav");
                 sound_effect.detach();
 
                 before_front = Q.front();
@@ -283,6 +283,8 @@ void Play() {
             Gotoxy(78, 23);
             SetColor(6, 4);
             cout << "Status: " << status[2] << endl;
+            thread sound_effect(SoundEffect, "game_over.wav");
+            sound_effect.detach();
             do {
                 huong = getch();
             } while (huong != 'r' && huong != 'b');
