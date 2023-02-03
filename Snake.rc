@@ -1,0 +1,4 @@
+#ifndef _SNAKE_RC
+    #define _SNAKE_RC
+    MAINICON ICON "Snake.ico"
+#endif
